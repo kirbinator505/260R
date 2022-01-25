@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,6 +14,18 @@ public class Player : MonoBehaviour
         {
             inventory.AddItem(item.item, 1);
             Destroy(other.gameObject);
+        }
+    }
+
+    private void Update() //this is just to run the save and load stuff, will bind it to something else
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            inventory.Save(); //this is what I'll need to bind to something else, probably application.quit and some other autosave function
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            inventory.Load(); //this will be bound to the application loading
         }
     }
 
