@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d0b6ee6e50a7f46ac67c5a9b862810, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7369931882474379493, guid: d2bfa3e400af1654e962470118439a1e, type: 3}
+  ID: 2
+  uiDisplay: {fileID: 21300000, guid: 44545b99d3de3484e847d677d579bd63, type: 3}
   type: 0
   description: Grilled river fish
-  restoreHealthValue: 16
+  buffs: []

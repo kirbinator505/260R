@@ -9,10 +9,10 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) //will probably replace this with a pickup prompt
     {
-        var item = other.GetComponent<Item>();
+        var item = other.GetComponent<GroundItem>();
         if (item)
         {
-            inventory.AddItem(item.item, 1);
+            inventory.AddItem(new Item(item.item), 1);
             Destroy(other.gameObject);
         }
     }
@@ -32,6 +32,6 @@ public class Player : MonoBehaviour
     private void OnApplicationQuit() //this is just used to clear inventory during testing, don't use for actual game or all items will get deleted
     
     {
-        inventory.Container.Clear();
+        inventory.Container.Items.Clear();
     }
 }

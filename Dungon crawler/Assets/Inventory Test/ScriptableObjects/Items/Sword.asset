@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889f07ac4dfb001489be88943e6db357, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6768186175615760365, guid: dfdf48484fa82be41ab23cb47450f169, type: 3}
+  ID: 3
+  uiDisplay: {fileID: 21300000, guid: 0199fdbfa0455204b8b4bcd0d58d1434, type: 3}
   type: 1
   description: a simple sword of iron
-  atkBonus: 5
-  defenseBonus: 0
+  buffs:
+  - attribute: 2
+    value: 0
+    min: 10
+    max: 20

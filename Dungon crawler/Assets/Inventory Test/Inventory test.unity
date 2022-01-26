@@ -919,11 +919,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: cbbedb5330acb99418d0b1851e7ef855, type: 2}
-  X_START: -35
-  Y_START: 97
-  X_SPACE_BETWEEN_ITEMS: 20
-  NUMBER_OF_COLUMNS: 5
-  Y_SPACE_BETWEEN_ITEMS: 20
+  inventoryPrefab: {fileID: 5153178507052225471, guid: 22ee0a8896cbdeb4fac94907e3a8cee6, type: 3}
+  X_START: -69
+  Y_START: 83
+  X_SPACE_BETWEEN_ITEMS: 60
+  NUMBER_OF_COLUMNS: 3
+  Y_SPACE_BETWEEN_ITEMS: 60
 --- !u!114 &1181459953
 MonoBehaviour:
   m_ObjectHideFlags: 0
