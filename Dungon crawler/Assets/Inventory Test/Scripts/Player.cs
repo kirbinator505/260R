@@ -30,8 +30,8 @@ public class Player : MonoBehaviour
     }
 
     private void OnApplicationQuit() //this is just used to clear inventory during testing, don't use for actual game or all items will get deleted
-    
+
     {
-        inventory.Container.Items.Clear();
+        inventory.Container.Items = new InventorySlot[9];
     }
 }
