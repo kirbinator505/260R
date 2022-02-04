@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
         {
             inventory.AddItem(new Item(item.item), 1);
             Destroy(other.gameObject);
+            Debug.Log("Item picked up");
         }
     }
 

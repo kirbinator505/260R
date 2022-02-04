@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
 //created using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
 public class InventoryObject : ScriptableObject
@@ -20,7 +18,7 @@ public class InventoryObject : ScriptableObject
             SetFirstSlot(_item, _amount);
             return;
         }
-
+        
         for (int i = 0; i < Container.Items.Length; i++)
         {
             if (Container.Items[i].ID == _item.ID)
@@ -29,6 +27,7 @@ public class InventoryObject : ScriptableObject
                 return;
             }
         }
+        
 
     }
 
