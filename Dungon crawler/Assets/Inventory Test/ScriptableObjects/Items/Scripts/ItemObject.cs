@@ -7,7 +7,10 @@ using UnityEngine.UIElements;
 public enum ItemType //can add new types here to expand capabilities
 {
     Food,
-    Equipment,
+    Helmet,
+    Weapon,
+    Boots,
+    Chest,
     Default
 }
 
@@ -42,6 +45,11 @@ public class Item
     public int ID;
     public ItemBuff[] buffs;
 
+    public Item()
+    {
+        Name = "";
+        ID = -1;
+    }
     public Item(ItemObject item)
     {
         Name = item.name;

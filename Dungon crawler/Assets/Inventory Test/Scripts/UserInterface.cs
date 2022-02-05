@@ -2,27 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DisplayInventory : MonoBehaviour
+public abstract class UserInterface : MonoBehaviour
 {
     //created using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
-    public MouseItem mouseItem = new MouseItem();
+
+    public Player player;
 
     public InventoryObject inventory;
-    public GameObject inventoryPrefab;
+    
 
-    public int X_START, Y_START;
-    public int X_SPACE_BETWEEN_ITEMS, NUMBER_OF_COLUMNS, Y_SPACE_BETWEEN_ITEMS;
+   
 
-    Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
+    public Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < inventory.Container.Items.Length; i++)
+        {
+            inventory.Container.Items[i].parent = this;
+        }
         CreateSlots();
+        AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
+        AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
     }
 
     // Update is called once per frame
@@ -50,41 +55,29 @@ public class DisplayInventory : MonoBehaviour
         }
     }
 
-    public void CreateSlots()
-    {
-        itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
-        for (int i = 0; i < inventory.Container.Items.Length; i++)
-        {
-            var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
-            obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-            
-            AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
-            AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
-            AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
-            AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
-            AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
-            
-            itemsDisplayed.Add(obj, inventory.Container.Items[i]); 
-        }
-    }
+    public abstract void CreateSlots();
 
-    public Vector3 GetPosition(int i)
-    {
-        return new Vector3(X_START + ((X_SPACE_BETWEEN_ITEMS *(i % NUMBER_OF_COLUMNS))), Y_START + ((-Y_SPACE_BETWEEN_ITEMS * (i/NUMBER_OF_COLUMNS))), 0f);
-    }
+
 
     public void OnEnter(GameObject obj)
     {
-        mouseItem.hoverObj = obj;
+        player.mouseItem.hoverObj = obj;
         if (itemsDisplayed.ContainsKey(obj))
         {
-            mouseItem.hoverItem = itemsDisplayed[obj];
+            player.mouseItem.hoverItem = itemsDisplayed[obj];
         }
     }
     public void OnExit(GameObject obj)
     {
-        mouseItem.hoverObj = null;
-        mouseItem.hoverItem = null;
+        player.mouseItem.hoverObj = null;
+        player.mouseItem.hoverItem = null;
+    }
+    public void OnEnterInterface(GameObject obj)
+    {
+        player.mouseItem.UI = obj.GetComponent<UserInterface>();
+    }public void OnExitInterface(GameObject obj)
+    {
+        player.mouseItem.UI = null;
     }
     public void OnDragStart(GameObject obj)
     {
@@ -98,31 +91,40 @@ public class DisplayInventory : MonoBehaviour
             img.sprite = inventory.dataBase.GetItem[itemsDisplayed[obj].ID].uiDisplay;
             img.raycastTarget = false;
         }
-        mouseItem.obj = mouseObj;
-        mouseItem.item = itemsDisplayed[obj];
+        player.mouseItem.obj = mouseObj;
+        player.mouseItem.item = itemsDisplayed[obj];
     }
     public void OnDragEnd(GameObject obj)
     {
-        if (mouseItem.hoverObj)
+        var itemOnMouse = player.mouseItem;
+        var mouseHoverItem = itemOnMouse.hoverItem;
+        var mouseHoverObj = itemOnMouse.hoverObj;
+        var getItemObject = inventory.dataBase.GetItem;
+        
+        if (itemOnMouse.UI != null)
         {
-            inventory.MoveItem(itemsDisplayed[obj], itemsDisplayed[mouseItem.hoverObj]);
+            if (mouseHoverObj)
+            {
+                if(mouseHoverItem.CanPlaceInSlot(getItemObject[itemsDisplayed[obj].ID]) && (mouseHoverItem.item.ID <= -1 || (mouseHoverItem.item.ID >= 0 && itemsDisplayed[obj].CanPlaceInSlot(getItemObject[mouseHoverItem.item.ID]))))
+                    inventory.MoveItem(itemsDisplayed[obj], mouseHoverItem.parent.itemsDisplayed[itemOnMouse.hoverObj]);
+            }
+            else
+            {
+                inventory.RemoveItem(itemsDisplayed[obj].item);
+            }
+            Destroy(itemOnMouse.obj);
+            itemOnMouse.item = null;
         }
-        else
-        {
-            inventory.RemoveItem(itemsDisplayed[obj].item);
-        }
-        Destroy(mouseItem.obj);
-        mouseItem.item = null;
     }
     public void OnDrag(GameObject obj)
     {
-        if (mouseItem.obj != null)
+        if (player.mouseItem.obj != null)
         {
-            mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
+            player.mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
         }
     }
     
-    private void  AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
+    protected void  AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
         var eventTrigger = new EventTrigger.Entry();
@@ -131,4 +133,13 @@ public class DisplayInventory : MonoBehaviour
         trigger.triggers.Add(eventTrigger);
     }
     
+}
+
+public class MouseItem
+{
+    public GameObject obj;
+    public InventorySlot item;
+    public InventorySlot hoverItem;
+    public GameObject hoverObj;
+    public UserInterface UI;
 }

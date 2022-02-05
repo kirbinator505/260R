@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
 {
     //created using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
 
+    public MouseItem mouseItem = new MouseItem();
+    
     public InventoryObject inventory;
 
     public void OnTriggerEnter(Collider other) //will probably replace this with a pickup prompt
