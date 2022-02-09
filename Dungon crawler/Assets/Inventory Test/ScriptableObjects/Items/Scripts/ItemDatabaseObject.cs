@@ -19,7 +19,7 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            Items[i].ID = i;
+            Items[i].data.ID = i;
             GetItem.Add(i, Items[i]);
         }
     }

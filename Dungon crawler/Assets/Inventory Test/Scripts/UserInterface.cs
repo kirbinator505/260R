@@ -13,11 +13,7 @@ public abstract class UserInterface : MonoBehaviour
     public Player player;
 
     public InventoryObject inventory;
-    
-
-   
-
-    public Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
+    public Dictionary<GameObject, InventorySlot> slostOnInterface = new Dictionary<GameObject, InventorySlot>();
     // Start is called before the first frame update
     void Start()
     {
@@ -38,19 +34,19 @@ public abstract class UserInterface : MonoBehaviour
 
     public void UpdateSlots()
     {
-        foreach (KeyValuePair<GameObject,InventorySlot> _slot in itemsDisplayed)
+        foreach (KeyValuePair<GameObject,InventorySlot> slot in slostOnInterface)
         {
-            if (_slot.Value.ID >= 0)
+            if (slot.Value.item.ID >= 0)
             {
-                _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = inventory.dataBase.GetItem[_slot.Value.item.ID].uiDisplay;
-                _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
-                _slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = _slot.Value.amount == 1 ? "" : _slot.Value.amount.ToString("n0");
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.Value.ItemObject.uiDisplay;
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
             }
             else
             {
-                _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
-                _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
-                _slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
             }
         }
     }
@@ -61,23 +57,18 @@ public abstract class UserInterface : MonoBehaviour
 
     public void OnEnter(GameObject obj)
     {
-        player.mouseItem.hoverObj = obj;
-        if (itemsDisplayed.ContainsKey(obj))
-        {
-            player.mouseItem.hoverItem = itemsDisplayed[obj];
-        }
+        MouseData.slotHoveredOver = obj;
     }
     public void OnExit(GameObject obj)
     {
-        player.mouseItem.hoverObj = null;
-        player.mouseItem.hoverItem = null;
+        MouseData.slotHoveredOver = null;
     }
     public void OnEnterInterface(GameObject obj)
     {
-        player.mouseItem.UI = obj.GetComponent<UserInterface>();
+        MouseData.InterfaceMouseOver = obj.GetComponent<UserInterface>();
     }public void OnExitInterface(GameObject obj)
     {
-        player.mouseItem.UI = null;
+        MouseData.InterfaceMouseOver = null;
     }
     public void OnDragStart(GameObject obj)
     {
@@ -85,42 +76,35 @@ public abstract class UserInterface : MonoBehaviour
         var rt = mouseObj.AddComponent<RectTransform>();
         rt.sizeDelta = new Vector2(50, 50); //this needs to match the rect transform size of the InventoryPrefab
         mouseObj.transform.SetParent(transform.parent);
-        if (itemsDisplayed[obj].ID >= 0)
+        if (slostOnInterface[obj].item.ID >= 0)
         {
             var img = mouseObj.AddComponent<Image>();
-            img.sprite = inventory.dataBase.GetItem[itemsDisplayed[obj].ID].uiDisplay;
+            img.sprite = slostOnInterface[obj].ItemObject.uiDisplay;
             img.raycastTarget = false;
         }
-        player.mouseItem.obj = mouseObj;
-        player.mouseItem.item = itemsDisplayed[obj];
+        MouseData.tempItemDragged = mouseObj;
     }
     public void OnDragEnd(GameObject obj)
     {
-        var itemOnMouse = player.mouseItem;
-        var mouseHoverItem = itemOnMouse.hoverItem;
-        var mouseHoverObj = itemOnMouse.hoverObj;
-        var getItemObject = inventory.dataBase.GetItem;
-        
-        if (itemOnMouse.UI != null)
+        Destroy(MouseData.tempItemDragged);
+
+        if (MouseData.InterfaceMouseOver == null)
         {
-            if (mouseHoverObj)
-            {
-                if(mouseHoverItem.CanPlaceInSlot(getItemObject[itemsDisplayed[obj].ID]) && (mouseHoverItem.item.ID <= -1 || (mouseHoverItem.item.ID >= 0 && itemsDisplayed[obj].CanPlaceInSlot(getItemObject[mouseHoverItem.item.ID]))))
-                    inventory.MoveItem(itemsDisplayed[obj], mouseHoverItem.parent.itemsDisplayed[itemOnMouse.hoverObj]);
-            }
-            else
-            {
-                inventory.RemoveItem(itemsDisplayed[obj].item);
-            }
-            Destroy(itemOnMouse.obj);
-            itemOnMouse.item = null;
+            slostOnInterface[obj].RemoveItem();
+            return;
+        }
+
+        if (MouseData.slotHoveredOver)
+        {
+            InventorySlot mouseHoverSlotData = MouseData.InterfaceMouseOver.slostOnInterface[MouseData.slotHoveredOver];
+            inventory.SwapItems(slostOnInterface[obj], mouseHoverSlotData);
         }
     }
     public void OnDrag(GameObject obj)
     {
-        if (player.mouseItem.obj != null)
+        if (MouseData.tempItemDragged != null)
         {
-            player.mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
+            MouseData.tempItemDragged.GetComponent<RectTransform>().position = Input.mousePosition;
         }
     }
     
@@ -135,11 +119,9 @@ public abstract class UserInterface : MonoBehaviour
     
 }
 
-public class MouseItem
+public static class MouseData
 {
-    public GameObject obj;
-    public InventorySlot item;
-    public InventorySlot hoverItem;
-    public GameObject hoverObj;
-    public UserInterface UI;
+    public static GameObject tempItemDragged;
+    public static GameObject slotHoveredOver;
+    public static UserInterface InterfaceMouseOver;
 }
