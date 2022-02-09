@@ -8,15 +8,18 @@ public class Player : MonoBehaviour
     //public MouseItem mouseItem = new MouseItem();
     
     public InventoryObject inventory;
+    public InventoryObject equipment;
 
     public void OnTriggerEnter(Collider other) //will probably replace this with a pickup prompt
     {
         var item = other.GetComponent<GroundItem>();
         if (item)
         {
-            inventory.AddItem(new Item(item.item), 1);
-            Destroy(other.gameObject);
-            Debug.Log("Item picked up");
+            Item _item = new Item(item.item);
+            if (inventory.AddItem(_item, 1))
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 
@@ -25,16 +28,19 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             inventory.Save(); //this is what I'll need to bind to something else, probably application.quit and some other autosave function
+            equipment.Save();
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
             inventory.Load(); //this will be bound to the application loading
+            equipment.Load();
         }
     }
 
     private void OnApplicationQuit() //this is just used to clear inventory during testing, don't use for actual game or all items will get deleted
 
     {
-        inventory.Container.Items = new InventorySlot[9];
+        inventory.Container.clear();
+        equipment.Container.clear();
     }
 }

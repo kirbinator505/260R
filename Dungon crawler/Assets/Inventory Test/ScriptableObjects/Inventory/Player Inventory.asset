@@ -16,57 +16,57 @@ MonoBehaviour:
   dataBase: {fileID: 11400000, guid: b8cf9216a246bb54b85e8be585798a4f, type: 2}
   Container:
     Items:
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       amount: 0

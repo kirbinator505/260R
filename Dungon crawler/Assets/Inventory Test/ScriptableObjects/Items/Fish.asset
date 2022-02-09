@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d0b6ee6e50a7f46ac67c5a9b862810, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
-  ID: 2
   uiDisplay: {fileID: 21300000, guid: 44545b99d3de3484e847d677d579bd63, type: 3}
+  stackable: 1
   type: 0
   description: Grilled river fish
-  buffs: []
+  data:
+    Name: 
+    ID: 2
+    buffs: []

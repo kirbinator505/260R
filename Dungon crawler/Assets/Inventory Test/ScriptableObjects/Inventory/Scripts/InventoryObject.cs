@@ -140,6 +140,7 @@ public class InventoryObject : ScriptableObject
 public class InventorySlot
 {
     public ItemType[] AllowedItems = new ItemType[0];
+    [System.NonSerialized]
     public UserInterface parent;
     public Item item;
     public int amount;
@@ -158,7 +159,7 @@ public class InventorySlot
     }
     public InventorySlot()
     {
-        item = null;
+        item = new Item();
         amount = 0;
     }
     public InventorySlot(Item _item, int _amount)
@@ -212,7 +213,7 @@ public class Inventory
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            Items[i].UpdateSlot(new Item(), 0);
+            Items[i].RemoveItem();
         }
     }
 }
