@@ -10,7 +10,7 @@ public class StaticInterface : UserInterface
     public override void CreateSlots()
     {
         slostOnInterface = new Dictionary<GameObject, InventorySlot>();
-        for (int i = 0; i < inventory.Container.Items.Length; i++)
+        for (int i = 0; i < inventory.GetSlots.Length; i++)
         {
             var obj = slots[i];
             
@@ -19,8 +19,9 @@ public class StaticInterface : UserInterface
             AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
             AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
             AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
+            inventory.GetSlots[i].SlotDisplay = obj;
             
-            slostOnInterface.Add(obj, inventory.Container.Items[i]);
+            slostOnInterface.Add(obj, inventory.GetSlots[i]);
         }
     }
 }

@@ -16,20 +16,40 @@ public abstract class UserInterface : MonoBehaviour
     void Start()
     {
 
-        for (int i = 0; i < inventory.Container.Items.Length; i++)
+        for (int i = 0; i < inventory.GetSlots.Length; i++)
         {
-            inventory.Container.Items[i].parent = this;
+            inventory.GetSlots[i].parent = this;
+            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
         }
         CreateSlots();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
     }
 
+    private void OnSlotUpdate(InventorySlot slot)
+    {
+        
+        if (slot.item.ID >= 0)
+        {
+            slot.SlotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.ItemObject.uiDisplay;
+            slot.SlotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+            slot.SlotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = slot.amount == 1 ? "" : slot.amount.ToString("n0");
+        }
+        else
+        {
+            slot.SlotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+            slot.SlotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+            slot.SlotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        }
+    }
+
     // Update is called once per frame
+    /*
     void Update()
     {
         slostOnInterface.UpdateSlotDisplay(); // might be able to remove this and call the class with a game object to only update once something is picked up
     }
+    */
 
     public abstract void CreateSlots();
 
