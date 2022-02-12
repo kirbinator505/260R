@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum ItemType //can add new types here to expand capabilities
 {
@@ -67,7 +63,7 @@ public class Item
 }
 
 [System.Serializable]
-public class ItemBuff
+public class ItemBuff : IModifiers
 {
     public Attributes attribute;
     public int value, min, max;
@@ -82,5 +78,10 @@ public class ItemBuff
     public void generateValue()
     {
         value = UnityEngine.Random.Range(min, max);
+    }
+
+    public void AddValue(ref int baseValue)
+    {
+        baseValue += value;
     }
 }

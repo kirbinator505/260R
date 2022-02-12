@@ -13,4 +13,61 @@ MonoBehaviour:
   m_Name: Chest Inventory
   m_EditorClassIdentifier: 
   savePath: 
-  Container: []
+  dataBase: {fileID: 11400000, guid: b8cf9216a246bb54b85e8be585798a4f, type: 2}
+  Container:
+    Slots:
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      amount: 0
+  type: 2

@@ -3,12 +3,21 @@ using System.Runtime.Serialization;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 //created using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
+
+public enum InterfaceType
+{
+    Inventory,
+    Equipment,
+    Chest
+    //can add more types of interfaces here later
+}
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
 public class InventoryObject : ScriptableObject
 {
     public string savePath; //this will be where inventories are saved
     public ItemDatabaseObject dataBase;
     public Inventory Container;
+    public InterfaceType type;
     public InventorySlot[] GetSlots
     {
         get { return Container.Slots;  }
