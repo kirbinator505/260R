@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -8,9 +7,10 @@ using UnityEngine.UI;
 
 public abstract class UserInterface : MonoBehaviour
 {
-    //created using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
+    //mostly created using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
 
     public InventoryObject inventory;
+    public GameObject groundItemPrefab;
     public Dictionary<GameObject, InventorySlot> slostOnInterface = new Dictionary<GameObject, InventorySlot>();
     // Start is called before the first frame update
     void Start()
@@ -43,17 +43,8 @@ public abstract class UserInterface : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    /*
-    void Update()
-    {
-        slostOnInterface.UpdateSlotDisplay(); // might be able to remove this and call the class with a game object to only update once something is picked up
-    }
-    */
-
     public abstract void CreateSlots();
-
-
+    
 
     public void OnEnter(GameObject obj)
     {
@@ -66,7 +57,8 @@ public abstract class UserInterface : MonoBehaviour
     public void OnEnterInterface(GameObject obj)
     {
         MouseData.InterfaceMouseOver = obj.GetComponent<UserInterface>();
-    }public void OnExitInterface(GameObject obj)
+    }
+    public void OnExitInterface(GameObject obj)
     {
         MouseData.InterfaceMouseOver = null;
     }
@@ -78,8 +70,11 @@ public abstract class UserInterface : MonoBehaviour
     {
         Destroy(MouseData.tempItemDragged);
 
-        if (MouseData.InterfaceMouseOver == null)
+        if (MouseData.InterfaceMouseOver == null) // this is is where dropping an item will be figured out
         {
+            var groundOBJ = Instantiate(groundItemPrefab, Vector3.zero, Quaternion.identity, transform);
+            groundOBJ.GetComponent<GroundItem>().item = inventory.dataBase.ItemObjects[slostOnInterface[obj].item.ID];
+            groundOBJ.transform.parent = null;
             slostOnInterface[obj].RemoveItem();
             return;
         }

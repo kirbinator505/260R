@@ -1155,6 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: c21c93b07d4508e4db9533c7e53d4070, type: 2}
+  groundItemPrefab: {fileID: 7316089990780800951, guid: f0463e2baa72a694992dc64563027ce9, type: 3}
   slots:
   - {fileID: 529051340}
   - {fileID: 1675071716}
@@ -1858,6 +1859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: cbbedb5330acb99418d0b1851e7ef855, type: 2}
+  groundItemPrefab: {fileID: 7316089990780800951, guid: f0463e2baa72a694992dc64563027ce9, type: 3}
   inventoryPrefab: {fileID: 5153178507052225471, guid: 22ee0a8896cbdeb4fac94907e3a8cee6, type: 3}
   X_START: -70
   Y_START: 65
