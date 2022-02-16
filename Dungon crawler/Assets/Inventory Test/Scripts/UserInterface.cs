@@ -11,6 +11,7 @@ public abstract class UserInterface : MonoBehaviour
 
     public InventoryObject inventory;
     public GameObject groundItemPrefab;
+    public Vector3SO playerLocationSO;
     public Dictionary<GameObject, InventorySlot> slostOnInterface = new Dictionary<GameObject, InventorySlot>();
     // Start is called before the first frame update
     void Start()
@@ -70,12 +71,12 @@ public abstract class UserInterface : MonoBehaviour
     {
         Destroy(MouseData.tempItemDragged);
 
-        if (MouseData.InterfaceMouseOver == null) // this is is where dropping an item will be figured out
+        if (MouseData.InterfaceMouseOver == null)
         {
-            var groundOBJ = Instantiate(groundItemPrefab, Vector3.zero, Quaternion.identity, transform);
-            groundOBJ.GetComponent<GroundItem>().item = inventory.dataBase.ItemObjects[slostOnInterface[obj].item.ID];
-            groundOBJ.transform.parent = null;
-            slostOnInterface[obj].RemoveItem();
+            if (slostOnInterface[obj].item.ID >= 0)
+            {
+                DropItem(obj);
+            }
             return;
         }
 
@@ -108,7 +109,15 @@ public abstract class UserInterface : MonoBehaviour
         }
         return tempItem;
     }
-    
+
+    public void DropItem(GameObject obj)
+    {
+        Vector3 position = playerLocationSO.pos;
+        var groundOBJ = Instantiate(groundItemPrefab, position, Quaternion.identity, transform);
+        groundOBJ.GetComponent<GroundItem>().item = inventory.dataBase.ItemObjects[slostOnInterface[obj].item.ID];
+        groundOBJ.transform.parent = null;
+        slostOnInterface[obj].RemoveItemAmount();
+    }
     protected void  AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();

@@ -204,6 +204,16 @@ public class InventorySlot
         UpdateSlot(new Item(), 0);
     }
 
+    public void RemoveItemAmount()
+    {
+        if ( amount> 1)
+        {
+            UpdateSlot(item, amount-=1);
+            return;
+        }
+        RemoveItem();
+    }
+
     public void AddAmount(int value)
     {
         UpdateSlot(item, amount+=value);

@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
     //created using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
     public InventoryObject inventory;
     public InventoryObject equipment;
+    public Vector3SO playerLocationSO;
 
     public Attribute[] attributes;
 
@@ -107,6 +108,8 @@ public class Player : MonoBehaviour
             inventory.Load(); //this will be bound to the application loading
             equipment.Load();
         }
+
+        playerLocationSO.pos = GetComponent<Transform>().position;
     }
 
     public void AttributeModified(Attribute attribute)
