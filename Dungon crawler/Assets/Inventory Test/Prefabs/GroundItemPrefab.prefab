@@ -109,6 +109,8 @@ GameObject:
   - component: {fileID: 6245988088883933703}
   - component: {fileID: 2914848528273233191}
   - component: {fileID: 2379177607691008233}
+  - component: {fileID: 112361238983949259}
+  - component: {fileID: 4097056839173252738}
   m_Layer: 0
   m_Name: GroundItemPrefab
   m_TagString: Untagged
@@ -170,3 +172,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leItem: {fileID: 7316089990780800951}
+--- !u!114 &112361238983949259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316089990780800951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14492abf01b6b414ab77939c13f98e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SnapPos: {fileID: 11400000, guid: 71fc071560a4e104ab1fdca5e3ef96d6, type: 2}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!114 &4097056839173252738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316089990780800951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633a5d33b59496240a193af19f60ed79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: {fileID: 11400000, guid: 989f189cef9a0f44d93d3e040e323d38, type: 2}
+  startEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  respondEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 112361238983949259}
+        m_TargetAssemblyTypeName: SnapToGrid, Assembly-CSharp
+        m_MethodName: GridSnap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  holdTime: 0.1

@@ -11,7 +11,8 @@ public abstract class UserInterface : MonoBehaviour
 
     public InventoryObject inventory;
     public GameObject groundItemPrefab;
-    public Vector3SO playerLocationSO;
+    public Vector3SO dropLocationSO;
+    public UnityEvent itemDropped;
     public Dictionary<GameObject, InventorySlot> slostOnInterface = new Dictionary<GameObject, InventorySlot>();
     // Start is called before the first frame update
     void Start()
@@ -112,7 +113,8 @@ public abstract class UserInterface : MonoBehaviour
 
     public void DropItem(GameObject obj)
     {
-        Vector3 position = playerLocationSO.pos;
+        itemDropped.Invoke();
+        Vector3 position = dropLocationSO.pos;
         var groundOBJ = Instantiate(groundItemPrefab, position, Quaternion.identity, transform);
         groundOBJ.GetComponent<GroundItem>().item = inventory.dataBase.ItemObjects[slostOnInterface[obj].item.ID];
         groundOBJ.transform.parent = null;
