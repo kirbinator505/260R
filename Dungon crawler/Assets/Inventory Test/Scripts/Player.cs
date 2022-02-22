@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class Player : MonoBehaviour
     public Vector3SO playerLocationSO;
 
     public Attribute[] attributes;
+
+    private GroundItem ItemToPickUp;
+    public Image pickupPrompt;
 
     private void Start()
     {
@@ -85,15 +89,22 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) //will probably replace this with a pickup prompt
     {
-        var item = other.GetComponent<GroundItem>();
-        if (item)
+        ItemToPickUp = other.GetComponent<GroundItem>();
+        if (ItemToPickUp)
         {
-            Item _item = new Item(item.item);
-            if (inventory.AddItem(_item, 1))
-            {
-                Destroy(other.gameObject);
-            }
+            pickupPrompt.gameObject.SetActive(true);
+            pickupPrompt.GetComponentInChildren<PickupPromptDisplay>().SetText(ItemToPickUp);
         }
+    }
+
+    public void PickUp()
+    {
+        Item _item = new Item(ItemToPickUp.item);
+        if (inventory.AddItem(_item, 1))
+        {
+            Destroy(ItemToPickUp.gameObject);
+        }
+        pickupPrompt.gameObject.SetActive(false);
     }
 
     private void Update() //this is just to run the save and load stuff, will bind it to something else
