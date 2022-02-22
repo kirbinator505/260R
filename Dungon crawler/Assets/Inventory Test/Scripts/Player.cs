@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
 
     private GroundItem ItemToPickUp;
     public Image pickupPrompt;
+    public UnityEvent activatePrompt, deactivatePrompt, PassToPrompt;
+    public StringSO itemName;
 
     private void Start()
     {
@@ -90,10 +93,12 @@ public class Player : MonoBehaviour
     public void OnTriggerEnter(Collider other) //will probably replace this with a pickup prompt
     {
         ItemToPickUp = other.GetComponent<GroundItem>();
-        if (ItemToPickUp)
+        Debug.Log(ItemToPickUp);
+        if (ItemToPickUp) // something isn't working here with getting the name
         {
-            pickupPrompt.gameObject.SetActive(true);
-            pickupPrompt.GetComponentInChildren<PickupPromptDisplay>().SetText(ItemToPickUp);
+            activatePrompt.Invoke();
+            itemName.text = ItemToPickUp.name;
+            PassToPrompt.Invoke();
         }
     }
 
@@ -104,7 +109,7 @@ public class Player : MonoBehaviour
         {
             Destroy(ItemToPickUp.gameObject);
         }
-        pickupPrompt.gameObject.SetActive(false);
+        deactivatePrompt.Invoke();
     }
 
     private void Update() //this is just to run the save and load stuff, will bind it to something else
