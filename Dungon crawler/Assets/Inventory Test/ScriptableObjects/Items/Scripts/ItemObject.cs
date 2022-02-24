@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum ItemType //can add new types here to expand capabilities
@@ -21,6 +22,7 @@ public abstract class ItemObject : ScriptableObject
 {
     //made using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
     public Sprite uiDisplay;
+    public String Name;
     public bool stackable;
     public ItemType type;
     [TextArea(15,20)]

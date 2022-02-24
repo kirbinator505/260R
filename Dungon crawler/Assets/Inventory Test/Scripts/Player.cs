@@ -90,14 +90,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other) //will probably replace this with a pickup prompt
+    public void OnTriggerEnter(Collider other) //will probably replace this with some other way of selecting the item other than running into it
     {
         ItemToPickUp = other.GetComponent<GroundItem>();
-        Debug.Log(ItemToPickUp);
-        if (ItemToPickUp) // something isn't working here with getting the name
+        
+        if (ItemToPickUp)
         {
+            itemName.text = ItemToPickUp.item.Name;
             activatePrompt.Invoke();
-            itemName.text = ItemToPickUp.name;
             PassToPrompt.Invoke();
         }
     }

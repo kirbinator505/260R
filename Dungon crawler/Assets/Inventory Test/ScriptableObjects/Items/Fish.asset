@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 21300000, guid: 44545b99d3de3484e847d677d579bd63, type: 3}
+  Name: Fish
   stackable: 1
   type: 0
   description: Grilled river fish

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Chain Shirt
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 21300000, guid: f4e4fdb615cc5d64e85804c7ed23b64c, type: 3}
+  Name: Chain Shirt
   stackable: 0
   type: 4
   description: a shirt of iron rings
