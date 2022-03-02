@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class TMPPlayerController : MonoBehaviour
 {
     public Camera cam;
     public NavMeshAgent agent;
