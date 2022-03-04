@@ -15,8 +15,13 @@ MonoBehaviour:
   uiDisplay: {fileID: 21300000, guid: a78dd66cb6731d54b9dfbd0ebbde956e, type: 3}
   Name: Helmet
   stackable: 0
+  IsNewItem: 1
   type: 1
   description: to protect thine head
+  _item:
+    Name: 
+    ID: -1
+    buffs: []
   data:
     Name: 
     ID: 4

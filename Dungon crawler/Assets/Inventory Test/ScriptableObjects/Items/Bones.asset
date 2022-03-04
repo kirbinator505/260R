@@ -15,8 +15,13 @@ MonoBehaviour:
   uiDisplay: {fileID: 21300000, guid: 013cc8e009034664f99c45b5324b6686, type: 3}
   Name: Bones
   stackable: 1
+  IsNewItem: 0
   type: 5
   description: the remains of an unfortunate explorer
+  _item:
+    Name: 
+    ID: -1
+    buffs: []
   data:
     Name: 
     ID: 0

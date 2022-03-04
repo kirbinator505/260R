@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     public void PickUp()
     {
-        Item _item = new Item(ItemToPickUp.item);
+        Item _item = ItemToPickUp._item;
         if (inventory.AddItem(_item, 1))
         {
             Destroy(ItemToPickUp.gameObject);

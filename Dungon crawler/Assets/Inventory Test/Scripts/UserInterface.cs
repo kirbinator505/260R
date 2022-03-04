@@ -116,6 +116,7 @@ public abstract class UserInterface : MonoBehaviour
         itemDropped.Invoke();
         Vector3 position = dropLocationSO.pos;
         var groundOBJ = Instantiate(groundItemPrefab, position, Quaternion.identity, transform);
+        groundOBJ.GetComponent<GroundItem>().item.IsNewItem = false;
         groundOBJ.GetComponent<GroundItem>().item = inventory.dataBase.ItemObjects[slostOnInterface[obj].item.ID];
         groundOBJ.GetComponent<GroundItem>().item.data.buffs = slostOnInterface[obj].item.buffs;
         groundOBJ.transform.parent = null;

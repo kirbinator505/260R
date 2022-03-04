@@ -146,6 +146,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 99897a4d004bdb64bab7c5f963c7089a, type: 2}
+  _item:
+    Name: 
+    ID: -1
+    buffs: []
 --- !u!135 &2914848528273233191
 SphereCollider:
   m_ObjectHideFlags: 0

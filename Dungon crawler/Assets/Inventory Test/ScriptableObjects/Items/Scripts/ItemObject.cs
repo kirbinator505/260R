@@ -23,14 +23,15 @@ public abstract class ItemObject : ScriptableObject
     //made using https://www.youtube.com/watch?v=_IqTeruf3-s&list=PLJWSdH2kAe_Ij7d7ZFR2NIW8QCJE74CyT
     public Sprite uiDisplay;
     public String Name;
-    public bool stackable;
+    public bool stackable, IsNewItem;
     public ItemType type;
     [TextArea(15,20)]
     public string description;
-
+    public Item _item;
+    public WaitForSeconds wfsObject = new WaitForSeconds(1f);
     public Item data = new Item();
-
-    public Item CreateItem() // might not use
+    
+    public Item CreateItem()
     {
         Item newItem = new Item(this);
         return newItem;
