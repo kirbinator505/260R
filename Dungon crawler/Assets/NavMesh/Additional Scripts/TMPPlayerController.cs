@@ -7,6 +7,7 @@ public class TMPPlayerController : MonoBehaviour
     public NavMeshAgent agent;
     private Ray ray;
     private RaycastHit hit;
+    public Vector3SO playerPos;
 
     // Update is called once per frame
     void Update()
@@ -21,5 +22,6 @@ public class TMPPlayerController : MonoBehaviour
                 agent.SetDestination(hit.point);
             }
         }
+        playerPos.pos = transform.position;
     }
 }
