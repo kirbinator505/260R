@@ -19,7 +19,7 @@ public class GroundItem : MonoBehaviour, ISerializationCallbackReceiver
         if (item.IsNewItem)
         {
             _item = item.CreateItem();
-            Debug.Log("it's new");
+            //Debug.Log("it's new");
         }
     }
 

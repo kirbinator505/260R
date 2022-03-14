@@ -55,6 +55,7 @@ public class Item
         Name = item.name;
         ID = item.data.ID;
         buffs = new ItemBuff[item.data.buffs.Length];
+        Debug.Log("New buffs generated");
         for (int i = 0; i < buffs.Length; i++)
         {
             buffs[i] = new ItemBuff(item.data.buffs[i].min, item.data.buffs[i].max)
