@@ -14,6 +14,7 @@ public abstract class UserInterface : MonoBehaviour
     public Vector3SO dropLocationSO;
     public UnityEvent itemDropped;
     public Dictionary<GameObject, InventorySlot> slostOnInterface = new Dictionary<GameObject, InventorySlot>();
+    public ItemObjectSO droppedItemTransfer;
     // Start is called before the first frame update
     void Start()
     {
@@ -119,7 +120,15 @@ public abstract class UserInterface : MonoBehaviour
         groundOBJ.GetComponent<GroundItem>().item = slostOnInterface[obj].ItemObject;
         var droppedItem = groundOBJ.gameObject;
         var _groundOBJ = droppedItem.GetComponent<GroundItem>()._item;
-        Debug.Log(_groundOBJ.buffs[0]);
+        droppedItemTransfer.Item = slostOnInterface[obj].ItemObject;
+        for (int i = 0; i < slostOnInterface[obj].ItemObject._item.buffs.Length; i++)
+        {
+             Debug.Log(slostOnInterface[obj].ItemObject._item.buffs[i].value);
+        }
+        for (int i = 0; i < droppedItemTransfer.Item._item.buffs.Length; i++)
+        {
+            Debug.Log(droppedItemTransfer.Item._item.buffs[i].value);
+        }
         /*
         for (int i = 0; i < _groundOBJ._item.buffs.Length; i++)
         {
@@ -128,8 +137,8 @@ public abstract class UserInterface : MonoBehaviour
         }
         */
         // groundOBJ.GetComponent<GroundItem>()._item.buffs[].attribute. = slostOnInterface[obj].item;
-       // _groundOBJ.transform.parent = null;
-        slostOnInterface[obj].RemoveItemAmount();
+        //groundOBJ.transform.parent = null;
+        //slostOnInterface[obj].RemoveItemAmount();
     }
     protected void  AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {

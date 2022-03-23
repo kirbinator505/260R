@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2379177607691008233}
   - component: {fileID: 112361238983949259}
   - component: {fileID: 4097056839173252738}
+  - component: {fileID: 6551635374353120267}
   m_Layer: 0
   m_Name: GroundItemPrefab
   m_TagString: Untagged
@@ -224,3 +225,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   holdTime: 0.1
+--- !u!114 &6551635374353120267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316089990780800951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed81e539eb9550b4ca787b56a40967a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GroundObjectThing: {fileID: 7316089990780800951}
