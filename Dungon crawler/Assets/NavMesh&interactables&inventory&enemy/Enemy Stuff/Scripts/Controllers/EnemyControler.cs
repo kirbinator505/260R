@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(CharacterCombat))]
 public class EnemyControler : MonoBehaviour
 {
     // made using https://www.youtube.com/watch?v=xppompv1DBg&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7&index=11
@@ -9,10 +10,12 @@ public class EnemyControler : MonoBehaviour
 
     private Transform target;
     private NavMeshAgent agent;
+    private CharacterCombat combat;
     void Start()
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        combat = GetComponent<CharacterCombat>();
     }
 
     void Update()
@@ -25,7 +28,11 @@ public class EnemyControler : MonoBehaviour
 
             if (distance <= agent.stoppingDistance)
             {
-                //attack target
+                CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                if (targetStats != null)
+                {
+                    combat.Attack(targetStats);
+                }
                 faceTarget();
             }
         }
