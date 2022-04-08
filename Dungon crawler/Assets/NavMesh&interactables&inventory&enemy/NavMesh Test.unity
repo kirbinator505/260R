@@ -4549,7 +4549,7 @@ MonoBehaviour:
   damage:
     baseValue: 5
   armor:
-    baseValue: 0
+    baseValue: 2
 --- !u!114 &255986298
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,21 +34,22 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public void Heal(int healing)
+    public bool Heal(int healing)
     {
-        if (currentHealth ! >= maxHealth)
+        if (currentHealth < maxHealth)
         {
             if (currentHealth + healing > maxHealth)
             {
-                currentHealth = maxHealth;
+                currentHealth += (maxHealth - currentHealth);
+                return true;
             }
             else
             {
                 currentHealth += healing;
+                return true;
             }
         }
-            
-            
+        return false;
     }
 
     public virtual void Die()

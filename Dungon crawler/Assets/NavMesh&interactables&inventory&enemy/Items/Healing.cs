@@ -4,16 +4,12 @@ using UnityEngine;
 public class Healing : Item
 {
     public int value;
-    private PlayerStats player;
-
-    void Start()
-    {
-        player = PlayerManager.instance.player.GetComponent<PlayerStats>();
-    }
 
     public override void Use()
     {
-        base.Use();
-        player.Heal(value);
+       base.Use();
+       
+       if(PlayerManager.instance.player.GetComponent<PlayerStats>().Heal(value)) 
+           RemoveFromInventory();
     }
 }
