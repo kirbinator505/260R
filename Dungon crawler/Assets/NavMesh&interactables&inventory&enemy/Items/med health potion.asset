@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0860e9601efd3d4a86b1dc4b7a6f42e, type: 3}
-  m_Name: Healing
+  m_Name: med health potion
   m_EditorClassIdentifier: 
-  name: healing
+  name: Medium Health Potion
   icon: {fileID: 21300000, guid: 970c55c224abade47a5c1fec2438683a, type: 3}
   isDefaultItem: 0
   value: 15
