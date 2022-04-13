@@ -1,24 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+[CreateAssetMenu(menuName = "Inventory/New Inventory")]
+public class Inventory : ScriptableObject
 {
-    //I'll need to find a way to replace this singleton with something else. The old inventory system had the inventory itself be a Scriptable Object, so that might be the solution
-    #region Singleton
-    public static Inventory instance;
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogWarning("More than one instance of Inventory found!");
-            return;
-        }
-        instance = this;
-    }
-    #endregion
 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;

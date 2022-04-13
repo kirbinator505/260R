@@ -7,10 +7,6 @@ public class RandomDrops : MonoBehaviour
     private int doesDrop, dropsWhat;
     public int dropChanceDivider, DropChanceTarget;
     public GameObject itemPrefab;
-    public void Start()
-    {
-        RandomDrop();
-    }
 
     public void RandomDrop()
     {

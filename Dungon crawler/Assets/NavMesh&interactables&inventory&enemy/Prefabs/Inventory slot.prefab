@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 730037111043810733}
   removeButton: {fileID: 730037109439964407}
+  inventory: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
 --- !u!1 &730037109766812103
 GameObject:
   m_ObjectHideFlags: 0

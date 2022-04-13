@@ -4,12 +4,11 @@ public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;
     private InventorySlot[] slots;
-    private Inventory inventory;
+    public Inventory inventory;
     public GameObject inventoryUI;
     
     void Start()
     {
-        inventory = Inventory.instance; //this uses the singleton, and will need to be replaced
         inventory.onItemChangedCallback += UpdateUI;
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();

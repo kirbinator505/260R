@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu()]
+[CreateAssetMenu(menuName = "Inventory/Healing Item")]
 public class Healing : Item
 {
     public int value;

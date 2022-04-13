@@ -15,15 +15,13 @@ public class EquipmentManager : MonoBehaviour
     //need to replace the singletons, seems pretty easy just to change them into scriptable objects
     private Equipment[] currentEquipment;
 
-    private Inventory inventory;
+    public Inventory inventory;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged onEquipmentChanged;
 
     private void Start()
     {
-        inventory = Inventory.instance;
-        
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlots];
     }

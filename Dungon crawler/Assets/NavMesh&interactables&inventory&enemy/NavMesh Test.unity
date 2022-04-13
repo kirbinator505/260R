@@ -14666,6 +14666,7 @@ MonoBehaviour:
   interactionRadius: 2.2
   interactionTransform: {fileID: 844475521}
   item: {fileID: 11400000, guid: e31c543039b287c4fbdfeb76609712f4, type: 2}
+  inventory: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
 --- !u!65 &844475518
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25588,6 +25589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsParent: {fileID: 1726604008}
+  inventory: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
   inventoryUI: {fileID: 407757484}
 --- !u!1001 &1424476222
 PrefabInstance:
@@ -30687,7 +30689,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1723983231}
-  - component: {fileID: 1723983230}
   - component: {fileID: 1723983232}
   - component: {fileID: 1723983233}
   m_Layer: 0
@@ -30697,20 +30698,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1723983230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723983229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3360b99f41cf304b9422c61b196c1f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  space: 20
 --- !u!4 &1723983231
 Transform:
   m_ObjectHideFlags: 0
@@ -30737,6 +30724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd5145bccea96742951156bf7471212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
 --- !u!114 &1723983233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37127,6 +37115,7 @@ MonoBehaviour:
   interactionRadius: 2.2
   interactionTransform: {fileID: 2135429714}
   item: {fileID: 11400000, guid: 7565ea464fd878e4a82d0adaaab97db0, type: 2}
+  inventory: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
 --- !u!65 &2135429711
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37556,6 +37545,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1671128672881138080, guid: f3328f6c5b32785499f46037ba3be8fc, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3328f6c5b32785499f46037ba3be8fc, type: 3}
 --- !u!1001 &8106776996234645723
@@ -37565,6 +37558,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8106776994412211019, guid: 97602f3888dd14b4983d221046c51673, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 0be2d5edcf7f231409084d391f086805, type: 2}
+    - target: {fileID: 8106776994412211019, guid: 97602f3888dd14b4983d221046c51673, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
     - target: {fileID: 8106776994412211023, guid: 97602f3888dd14b4983d221046c51673, type: 3}
       propertyPath: m_RootOrder
       value: 20
