@@ -6,11 +6,12 @@ public class Equipment : Item
     public EquipmentSlot equipSlot;
     public int armorModifier;
     public int damageModifier;
+    public EquipmentManager equipmentManager;
 
     public override void Use()
     {
         base.Use();
-        EquipmentManager.instance.Equip(this);
+        equipmentManager.Equip(this);
         RemoveFromInventory();
     }
 }

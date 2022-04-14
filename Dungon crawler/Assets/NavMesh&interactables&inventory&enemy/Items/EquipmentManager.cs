@@ -1,26 +1,18 @@
 using UnityEngine;
 
-public class EquipmentManager : MonoBehaviour
+[CreateAssetMenu(menuName = "Inventory/New Equipment Manager")]
+public class EquipmentManager : ScriptableObject
 {
-    #region Singleton
-    
-    public static EquipmentManager instance;
-
-    void Awake()
-    {
-        instance = this;
-    }
-    
-    #endregion 
-    //need to replace the singletons, seems pretty easy just to change them into scriptable objects
     private Equipment[] currentEquipment;
 
     public Inventory inventory;
+    
+    private Equipment oldItem = null;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged onEquipmentChanged;
 
-    private void Start()
+    private void Awake()
     {
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlots];
@@ -29,8 +21,6 @@ public class EquipmentManager : MonoBehaviour
     public void Equip(Equipment newItem)
     {
         int slotIndex = (int) newItem.equipSlot;
-
-        Equipment oldItem = null;
 
         if (currentEquipment[slotIndex] != null)
         {

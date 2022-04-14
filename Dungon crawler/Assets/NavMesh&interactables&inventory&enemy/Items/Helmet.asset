@@ -19,3 +19,4 @@ MonoBehaviour:
   equipSlot: 0
   armorModifier: 3
   damageModifier: 0
+  equipmentManager: {fileID: 11400000, guid: d003a34f227fd344b99e8b0eb3ee0c59, type: 2}
