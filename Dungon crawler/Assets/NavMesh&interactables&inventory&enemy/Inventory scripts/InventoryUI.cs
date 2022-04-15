@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
@@ -38,5 +39,10 @@ public class InventoryUI : MonoBehaviour
             }
         }
         
+    }
+
+    public void OpenClose()
+    {
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
     }
 }

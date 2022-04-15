@@ -7,6 +7,7 @@ public class Inventory : ScriptableObject
 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
+    public GameObject itemPrefab;
 
     //while this script is on a game manager, it could easily be moved to a player, and probably will be
 
@@ -39,5 +40,18 @@ public class Inventory : ScriptableObject
         
         if(onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
+    }
+
+    public void Drop(Item item)
+    {
+        if (item != null)
+        {
+            GameObject droppedItem = Instantiate(itemPrefab, (PlayerManager.instance.player.transform));
+            droppedItem.GetComponent<ItemPickup>().item = item;
+            droppedItem.transform.parent = null;
+            items.Remove(item);
+            if(onItemChangedCallback != null)
+                onItemChangedCallback.Invoke();
+        }
     }
 }
