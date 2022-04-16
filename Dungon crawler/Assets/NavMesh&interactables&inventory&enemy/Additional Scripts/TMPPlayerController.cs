@@ -11,16 +11,40 @@ public class TMPPlayerController : MonoBehaviour
     public Vector3SO playerPos;
     private Interactable interactable, focus;
     private Transform target;
+    private Touch touch;
 
     // Update is called once per frame
     void Update()
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
+
+        if (Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            
+            ray = cam.ScreenPointToRay(touch.position); 
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                // move out agent (Will make this the destination ball in the grid movement thing)
+                agent.SetDestination(hit.point);
+                RemoveFocus();
+            }
+            
+            if (Physics.Raycast(ray, out hit))
+            {
+                interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    SetFocus(interactable);
+                }
+            }
+        }
         
         if (Input.GetMouseButtonDown(0))
         {
-            ray = cam.ScreenPointToRay(Input.mousePosition);
+            ray = cam.ScreenPointToRay(Input.mousePosition); 
 
             if (Physics.Raycast(ray, out hit))
             {
