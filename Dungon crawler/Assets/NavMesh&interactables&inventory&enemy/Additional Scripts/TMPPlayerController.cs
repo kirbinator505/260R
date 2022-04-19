@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class TMPPlayerController : MonoBehaviour
 {
+    //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7 and some other stuff I don't remember
     public Camera cam;
     public NavMeshAgent agent;
     private Ray ray;

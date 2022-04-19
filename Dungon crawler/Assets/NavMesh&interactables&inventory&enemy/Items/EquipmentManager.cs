@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Inventory/New Equipment Manager")]
 public class EquipmentManager : ScriptableObject
 {
+    //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7
     private Equipment[] currentEquipment;
 
     public Inventory inventory;

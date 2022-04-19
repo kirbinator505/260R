@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7
     public int maxHealth = 100;
     public int currentHealth { get; private set; }
     
     public Stat damage;
     public Stat armor;
+    
 
     private void Awake()
     {
@@ -21,7 +23,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         damage -= armor.Getvalue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
@@ -34,7 +36,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public bool Heal(int healing)
+    public virtual bool Heal(int healing)
     {
         if (currentHealth < maxHealth)
         {

@@ -4,12 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Inventory/New Inventory")]
 public class Inventory : ScriptableObject
 {
-
+    //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
     public GameObject itemPrefab;
-
-    //while this script is on a game manager, it could easily be moved to a player, and probably will be
 
     public List<Item> items = new List<Item>();
 
@@ -52,6 +50,14 @@ public class Inventory : ScriptableObject
             items.Remove(item);
             if(onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();
+        }
+    }
+
+    public void ClearInventory()
+    {
+        foreach (var item in items)
+        {
+            Remove(item);
         }
     }
 }
