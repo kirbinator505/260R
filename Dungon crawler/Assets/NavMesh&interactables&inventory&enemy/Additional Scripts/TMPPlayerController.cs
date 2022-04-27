@@ -6,17 +6,29 @@ public class TMPPlayerController : MonoBehaviour
 {
     //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7 and some other stuff I don't remember
     public Camera cam;
-    public NavMeshAgent agent;
+    public NavMeshAgent agent, agentSpeed;
     private Ray ray;
     private RaycastHit hit;
     public Vector3SO playerPos;
     private Interactable interactable, focus;
     private Transform target;
     private Touch touch;
+    public Animator animator;
+    public float speedPercent;
+    public bool moving, walkToggle,stopWalkToggle;
 
-    // Update is called once per frame
+    void Start()
+    {
+        agentSpeed = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
+        moving = false;
+    }
+
+
     void Update()
     {
+        speedPercent = agentSpeed.velocity.magnitude / agentSpeed.speed;
+        
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
@@ -73,6 +85,29 @@ public class TMPPlayerController : MonoBehaviour
             agent.SetDestination(target.position);
         }
         playerPos.pos = transform.position;
+
+        if (speedPercent > 0.1)
+        {
+            moving = true;
+            stopWalkToggle = true;
+            if (walkToggle)
+            {
+                walkToggle = false;
+                animator.SetTrigger("Walk");
+                Debug.Log("moving");
+            }
+        }
+        if (speedPercent < 0.1)
+        {
+            walkToggle = true;
+            moving = false;
+            if (stopWalkToggle)
+            {
+                stopWalkToggle = false;
+                animator.SetTrigger("Stop walk");
+                Debug.Log("stop");
+            }
+        }
     }
 
     void SetFocus(Interactable newFocus)
