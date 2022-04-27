@@ -6,6 +6,8 @@ public class Enemy : Interactable
     //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7
     private PlayerManager playerManager;
     private CharacterStats myStats;
+    public GameActions_SO toggleAttackButton;
+    public BoolSO isButtonOn;
 
     private void Start()
     {
