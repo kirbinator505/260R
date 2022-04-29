@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Player Equipment
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
+  WeaponDisplay: {fileID: 11400000, guid: 3017d21fd634641419a3cc41f532b1dd, type: 2}
+  ShieldDisplay: {fileID: 11400000, guid: 66c7909b3446c5446861af595af5c2e9, type: 2}

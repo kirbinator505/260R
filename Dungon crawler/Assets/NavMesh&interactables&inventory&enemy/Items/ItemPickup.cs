@@ -5,6 +5,7 @@ public class ItemPickup : Interactable
     //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7
     public Item item;
     public Inventory inventory;
+    public DisplayOnGround displayOnGround;
     public override void Interact()
     {
         PickUp();
@@ -16,5 +17,11 @@ public class ItemPickup : Interactable
         
         if(inventory.AddItem(item))
             Destroy(gameObject);
+    }
+
+    public void Awake()
+    {
+        displayOnGround = GetComponent<DisplayOnGround>();
+        displayOnGround.DisplayItemOnGround(item);
     }
 }

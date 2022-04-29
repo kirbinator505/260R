@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -15,10 +13,12 @@ public class PlayerManager : MonoBehaviour
 
     #endregion
 
-    public GameObject player;
+    public GameObject player, deathMenu;
+    public Inventory playerInventory;
 
     public void KillPlayer()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // can change this out to do whatever I want with player death
+        deathMenu.gameObject.SetActive(true);
+        playerInventory.ClearInventory();
     }
 }

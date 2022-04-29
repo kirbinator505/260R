@@ -14,8 +14,8 @@ public class TMPPlayerController : MonoBehaviour
     private Transform target;
     private Touch touch;
     public Animator animator;
-    public float speedPercent;
-    public bool moving, walkToggle,stopWalkToggle;
+    private float speedPercent;
+    private bool moving, walkToggle,stopWalkToggle;
 
     void Start()
     {
@@ -133,9 +133,8 @@ public class TMPPlayerController : MonoBehaviour
     public void FollowTarget(Interactable newTarget)
     {
         agent.stoppingDistance = newTarget.interactionRadius * 0.8f;
-        agent.updateRotation = false;
-        
         target = newTarget.interactionTransform;
+        FaceTarget();
     }
 
     public void StopFollowingTarget()

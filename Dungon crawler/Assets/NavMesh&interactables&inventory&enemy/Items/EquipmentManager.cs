@@ -7,6 +7,8 @@ public class EquipmentManager : ScriptableObject
     private Equipment[] currentEquipment;
 
     public Inventory inventory;
+
+    public ItemDisplay WeaponDisplay, ShieldDisplay;
     
     private Equipment oldItem = null;
 
@@ -34,6 +36,14 @@ public class EquipmentManager : ScriptableObject
             onEquipmentChanged.Invoke(newItem, oldItem);
         }
 
+        if (slotIndex == 3)
+        {
+            WeaponDisplay.DisplayItem(newItem.obj);
+        }
+        if (slotIndex == 4)
+        {
+            ShieldDisplay.DisplayItem(newItem.obj);
+        }
         currentEquipment[slotIndex] = newItem;
     }
 
@@ -49,6 +59,28 @@ public class EquipmentManager : ScriptableObject
             {
                 onEquipmentChanged.Invoke(null, oldItem);
             }
+            if (slotIndex == 3)
+            {
+                WeaponDisplay.ClearDisplay();
+            }
+            if (slotIndex == 4)
+            {
+                ShieldDisplay.ClearDisplay();
+            }
+        }
+    }
+    
+    public void ClearSlot(int slotIndex)
+    {
+        if (currentEquipment[slotIndex] != null)
+        {
+            Equipment oldItem = currentEquipment[slotIndex];
+            currentEquipment[slotIndex] = null;
+            
+            if (onEquipmentChanged != null)
+            {
+                onEquipmentChanged.Invoke(null, oldItem);
+            }
         }
     }
 
@@ -57,6 +89,14 @@ public class EquipmentManager : ScriptableObject
         for (int i = 0; i < currentEquipment.Length; i++)
         {
             Unequip(i);
+        }
+    }
+
+    public void ClearAll()
+    {
+        for (int i = 0; i < currentEquipment.Length; i++)
+        {
+            ClearSlot(i);
         }
     }
 

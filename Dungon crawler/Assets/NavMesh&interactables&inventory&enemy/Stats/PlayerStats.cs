@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : CharacterStats
@@ -7,10 +5,14 @@ public class PlayerStats : CharacterStats
     //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7
     public EquipmentManager equipmentManager;
     public HealthBarScript healthBar;
+    public Animator animator;
+    private bool dead;
     void Start()
     {
         equipmentManager.onEquipmentChanged += OnEquipmentChanged;
         healthBar.SetMaxHealth(maxHealth);
+        animator = GetComponentInChildren<Animator>();
+        dead = false;
     }
 
     void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
@@ -55,6 +57,12 @@ public class PlayerStats : CharacterStats
     public override void Die()
     {
         base.Die();
+        if (!dead)
+        {
+            animator.SetTrigger("Death");
+            dead = true;
+        }
+        equipmentManager.ClearAll();
         PlayerManager.instance.KillPlayer();
     }
 }

@@ -9,17 +9,25 @@ public class EnemyControler : MonoBehaviour
     public float lookRadius = 5f;
 
     private Transform target;
-    private NavMeshAgent agent;
+    private NavMeshAgent agent, agentSpeed;
     private CharacterCombat combat;
+    public Animator animator;
+    private float speedPercent;
+    private bool moving, walkToggle,stopWalkToggle;
     void Start()
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         combat = GetComponent<CharacterCombat>();
+        agentSpeed = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
+        moving = false;
     }
 
     void Update()
     {
+        speedPercent = agentSpeed.velocity.magnitude / agentSpeed.speed;
+        
         float distance = Vector3.Distance(target.position, transform.position);
 
         if (distance <= lookRadius)
@@ -32,8 +40,32 @@ public class EnemyControler : MonoBehaviour
                 if (targetStats != null)
                 {
                     combat.Attack(targetStats);
+                    animator.SetTrigger("Attack");
                 }
                 faceTarget();
+            }
+        }
+        
+        if (speedPercent > 0.1)
+        {
+            moving = true;
+            stopWalkToggle = true;
+            if (walkToggle)
+            {
+                walkToggle = false;
+                animator.SetTrigger("Walk");
+                Debug.Log("moving");
+            }
+        }
+        if (speedPercent < 0.1)
+        {
+            walkToggle = true;
+            moving = false;
+            if (stopWalkToggle)
+            {
+                stopWalkToggle = false;
+                animator.SetTrigger("Stop walk");
+                Debug.Log("stop");
             }
         }
     }

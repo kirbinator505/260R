@@ -8,6 +8,7 @@ public class Item : ScriptableObject
     public Sprite icon = null;
     public bool isDefaultItem = false;
     public Inventory inventory;
+    public GameObject obj;
 
     public virtual void Use()
     {
