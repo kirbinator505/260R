@@ -40,7 +40,6 @@ public class EnemyControler : MonoBehaviour
                 if (targetStats != null)
                 {
                     combat.Attack(targetStats);
-                    animator.SetTrigger("Attack");
                 }
                 faceTarget();
             }
