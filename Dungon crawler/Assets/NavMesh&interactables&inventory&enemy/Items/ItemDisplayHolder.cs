@@ -9,6 +9,6 @@ public class ItemDisplayHolder : MonoBehaviour
 
     public void Awake()
     {
-        itemDisplay.parent = this.transform;
+        itemDisplay.parentTransform = transform;
     }
 }

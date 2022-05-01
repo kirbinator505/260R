@@ -4,18 +4,18 @@ using UnityEngine;
 public class ItemDisplay : ScriptableObject
 {
     private GameObject oldItem;
-    public Transform parent;
+    public Transform parentTransform;
 
     public void DisplayItem(GameObject obj)
     {
         if (oldItem != null)
         {
             Destroy(oldItem);
-            oldItem = Instantiate(obj, parent);
+            oldItem = Instantiate(obj, parentTransform);
         }
         else
         {
-            oldItem = Instantiate(obj);
+            oldItem = Instantiate(obj, parentTransform);
         }
     }
 

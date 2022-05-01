@@ -4,4 +4,14 @@ using UnityEngine;
 public class BoolSO : ScriptableObject
 {
     public bool value;
+
+    public void setFalse()
+    {
+        value = false;
+    }
+
+    public void setTrue()
+    {
+        value = true;
+    }
 }

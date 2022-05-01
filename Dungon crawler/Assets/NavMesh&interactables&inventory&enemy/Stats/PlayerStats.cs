@@ -12,6 +12,7 @@ public class PlayerStats : CharacterStats
         equipmentManager.onEquipmentChanged += OnEquipmentChanged;
         healthBar.SetMaxHealth(maxHealth);
         animator = GetComponentInChildren<Animator>();
+        InvokeRepeating("SetCurrentHealth", 0f, 1f);
         dead = false;
     }
 
@@ -29,10 +30,10 @@ public class PlayerStats : CharacterStats
             damage.RemoveModifier(oldItem.damageModifier);
         }
     }
-    // Update is called once per frame
-    void Update()
+
+    void SetCurrentHealth()
     {
-        
+        healthBar.SetHealth(currentHealth);
     }
 
     public override void TakeDamage(int damage)

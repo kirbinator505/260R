@@ -26,7 +26,7 @@ public class EnemyStats : CharacterStats
             animator.SetTrigger("Death");
             dead = true;
         }
-        
+
         dropOnDeath.RandomDrop();
 
         StartCoroutine(Despawn());

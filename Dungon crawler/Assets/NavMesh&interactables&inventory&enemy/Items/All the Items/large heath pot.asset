@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0860e9601efd3d4a86b1dc4b7a6f42e, type: 3}
-  m_Name: med health potion
+  m_Name: large heath pot
   m_EditorClassIdentifier: 
-  name: Medium Health Potion
-  icon: {fileID: 21300000, guid: 970c55c224abade47a5c1fec2438683a, type: 3}
+  name: Large Health Potion
+  icon: {fileID: 21300000, guid: 1265ee31761070e46b5580716a761019, type: 3}
   isDefaultItem: 0
   inventory: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
-  value: 15
+  obj: {fileID: 919132149155446097, guid: d329f1c9965120340876b08446826a7b, type: 3}
+  value: 40

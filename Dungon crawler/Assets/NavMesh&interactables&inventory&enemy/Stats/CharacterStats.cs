@@ -4,7 +4,7 @@ public class CharacterStats : MonoBehaviour
 {
     //made using https://www.youtube.com/watch?v=nu5nyrB9U_o&list=PLPV2KyIb3jR4KLGCCAciWQ5qHudKtYeP7
     public int maxHealth = 100;
-    public int currentHealth { get; private set; }
+    public int currentHealth;
     
     public Stat damage;
     public Stat armor;

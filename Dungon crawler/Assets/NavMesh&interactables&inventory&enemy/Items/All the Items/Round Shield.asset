@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5520dc6498dc40b44b87a2f484c58a82, type: 3}
-  m_Name: Sword
+  m_Name: Round Shield
   m_EditorClassIdentifier: 
-  name: Sword
-  icon: {fileID: 21300000, guid: 1ea736d945f49e240b5383d15f14fb72, type: 3}
+  name: Round Shield
+  icon: {fileID: 21300000, guid: 0aa72c5005720614382517c4fffa336b, type: 3}
   isDefaultItem: 0
   inventory: {fileID: 11400000, guid: 34841c62bc961a34e8f38c814d875bcc, type: 2}
-  obj: {fileID: 1871691174411856, guid: b51c1ac56d74dea4780d54225834c595, type: 3}
-  equipSlot: 3
-  armorModifier: 0
-  damageModifier: 5
+  obj: {fileID: 1028550697772930, guid: 00890e5a751e94c49abb99f2f05c8607, type: 3}
+  equipSlot: 4
+  armorModifier: 2
+  damageModifier: 0
   equipmentManager: {fileID: 11400000, guid: d003a34f227fd344b99e8b0eb3ee0c59, type: 2}

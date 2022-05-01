@@ -44,8 +44,8 @@ public class Inventory : ScriptableObject
     {
         if (item != null)
         {
-            GameObject droppedItem = Instantiate(itemPrefab, (PlayerManager.instance.player.transform));
-            droppedItem.GetComponent<ItemPickup>().item = item;
+            itemPrefab.GetComponent<ItemPickup>().item = item;
+            GameObject droppedItem = Instantiate(itemPrefab, new Vector3(PlayerManager.instance.player.transform.position.x, 1f, PlayerManager.instance.player.transform.position.z), Quaternion.identity);
             droppedItem.transform.parent = null;
             items.Remove(item);
             if(onItemChangedCallback != null)
