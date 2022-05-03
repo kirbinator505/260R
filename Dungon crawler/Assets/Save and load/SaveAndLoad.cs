@@ -12,18 +12,25 @@ public class SaveAndLoad : MonoBehaviour
 
     public void LoadGameState()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-        PlayerManager.instance.player.GetComponent<TMPPlayerController>().agent.ResetPath();
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        PlayerManager.instance.player.transform.position = position;
-        PlayerManager.instance.player.GetComponent<PlayerStats>().currentHealth = data.health;
+        if (SaveSystem.LoadPlayer() == null || SaveSystem.LoadWave() == null)
+        {
+            LoadBaseGameState();
+        }
+        else
+        {
+            PlayerData data = SaveSystem.LoadPlayer();
+            PlayerManager.instance.player.GetComponent<TMPPlayerController>().agent.ResetPath();
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            PlayerManager.instance.player.transform.position = position;
+            PlayerManager.instance.player.GetComponent<PlayerStats>().currentHealth = data.health;
 
-        WaveData waveData = SaveSystem.LoadWave();
-        spawnManager.GetComponent<EnemySpawner>().wave = waveData.wave;
-        spawnManager.GetComponent<EnemySpawner>().isFirstSpawn = waveData.isFirst;
+            WaveData waveData = SaveSystem.LoadWave();
+            spawnManager.GetComponent<EnemySpawner>().wave = waveData.wave;
+            spawnManager.GetComponent<EnemySpawner>().isFirstSpawn = waveData.isFirst;
+        }
     }
 
     public void SaveBaseGameState()

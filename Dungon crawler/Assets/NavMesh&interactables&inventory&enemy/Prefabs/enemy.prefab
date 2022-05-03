@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
+  currentHealth: 0
   damage:
     baseValue: 5
   armor:
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4c3ea53b904ca4c8a1c693afc0edfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 0.8
+  attackSpeed: 0.4
   attackDelay: 0.6
   animator: {fileID: 0}
 --- !u!114 &5649907671432779835
